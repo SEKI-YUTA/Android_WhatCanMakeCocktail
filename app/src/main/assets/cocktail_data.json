@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "modifiend": "2022-7-6",
+  "drinks": [
+    {
+      "drinkName": "Gin Fizz",
+      "ingredients": ["Gin", "Lemon juice", "Carbonated water"]
+    },
+    {
+      "drinkName": "Orange Blossom",
+      "ingredients": ["Gin", "Orange juice"]
+    },
+    {
+      "drinkName": "Big Apple",
+      "ingredients": ["Vodka", "Apple juice"]
+    },
+    {
+      "drinkName": "Screw Driver",
+      "ingredients": ["Vodka", "Orange juice"]
+    }
+  ]
+}
