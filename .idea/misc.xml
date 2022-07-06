@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/yuta/Desktop/apps/java/WahtCanMakeCocktail/app/src/main/res/layout/activity_available_list.xml" value="0.12222222222222222" />
         <entry key="..\:/Users/yuta/Desktop/apps/java/WahtCanMakeCocktail/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/yuta/Desktop/apps/java/WahtCanMakeCocktail/app/src/main/res/layout/drink_item.xml" value="0.13518518518518519" />
       </map>
     </option>
   </component>

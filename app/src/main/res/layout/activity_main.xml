@@ -66,6 +66,29 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
+            android:text="Lemon juice"
+            android:textSize="24sp"
+            android:id="@+id/tv_lemon"
+            />
+        <CheckBox
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/ck_lemon"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:layout_margin="8dp"
+        android:weightSum="5"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
             android:text="Carbonated water"
             android:textSize="24sp"
             android:id="@+id/tv_carbonated"

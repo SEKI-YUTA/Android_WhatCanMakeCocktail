@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private JSONArray drinks;
 
     private Button btn_search;
-    private CheckBox ck_gin, ck_orange, ck_carbonated;
-    List<String> availableIngredients = new ArrayList<String>();
+    private List<CheckBox> checkBoxList = new ArrayList<>();
+    private List<String> availableIngredients = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,24 +64,17 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ck_gin = findViewById(R.id.ck_gin);
-        ck_orange = findViewById(R.id.ck_orange);
-        ck_carbonated = findViewById(R.id.ck_carbonated);
+        checkBoxList.add(findViewById(R.id.ck_gin));
+        checkBoxList.add(findViewById(R.id.ck_orange));
+        checkBoxList.add(findViewById(R.id.ck_carbonated));
+        checkBoxList.add(findViewById(R.id.ck_lemon));
         btn_search = findViewById(R.id.btn_search);
 
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 List<String> availableDrinks = new ArrayList<>();
-                if(ck_gin.isChecked()) {
-                    availableIngredients.add(getString(R.string.al_gin));
-                }
-                if(ck_orange.isChecked()) {
-                    availableIngredients.add(getString(R.string.sf_orangeJuice));
-                }
-                if(ck_carbonated.isChecked()) {
-                    availableIngredients.add(getString(R.string.sf_carbonatedWater));
-                }
+                checkAvailableIngredients();
 
                 for(int i=0; i < drinks.length(); i++) {
                     try {
@@ -103,10 +96,44 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 Intent intent = new Intent(MainActivity.this, AvailableListActivity.class);
-                intent.putExtra("availableDrinks", (Serializable) availableDrinks);
+                Bundle args = new Bundle();
+                args.putStringArrayList("availableDrinks", (ArrayList<String>) availableDrinks);
+                intent.putExtra("args", args);
                 startActivity(intent);
             }
         });
+    }
+
+    private void checkAvailableIngredients() {
+//        if(ck_gin.isChecked()) {
+//            availableIngredients.add(getString(R.string.al_gin));
+//        }
+//        if(ck_orange.isChecked()) {
+//            availableIngredients.add(getString(R.string.sf_orangeJuice));
+//        }
+//        if(ck_carbonated.isChecked()) {
+//            availableIngredients.add(getString(R.string.sf_carbonatedWater));
+//        }
+        for(int i = 0; i < checkBoxList.size(); i++) {
+            if(checkBoxList.get(i).isChecked()) {
+                switch(checkBoxList.get(i).getId()) {
+                    case R.id.ck_gin:
+                        availableIngredients.add(getString(R.string.al_gin));
+                        break;
+                    case R.id.ck_orange:
+                        availableIngredients.add(getString(R.string.sf_orangeJuice));
+                        break;
+                    case R.id.ck_carbonated:
+                        availableIngredients.add(getString(R.string.sf_carbonatedWater));
+                        break;
+                    case R.id.ck_lemon:
+                        availableIngredients.add(getString(R.string.sf_lemonJuice));
+                        break;
+                    default:
+                        return;
+                }
+            }
+        }
     }
 
 
