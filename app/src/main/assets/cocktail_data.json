@@ -7,6 +7,18 @@
       "ingredients": ["Gin", "Lemon juice", "Carbonated water"]
     },
     {
+      "drinkName": "Gin Tonic",
+      "ingredients": ["Gin", "Tonic water"]
+    },
+    {
+      "drinkName": "Gin Coke",
+      "ingredients": ["Gin", "Coke"]
+    },
+    {
+      "drinkName": "Gin Buck",
+      "ingredients": ["Gin", "Ginger ale", "Lemon juice"]
+    },
+    {
       "drinkName": "Orange Blossom",
       "ingredients": ["Gin", "Orange juice"]
     },

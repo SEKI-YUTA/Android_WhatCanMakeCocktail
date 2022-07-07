@@ -2,8 +2,23 @@
     <string name="app_name">WahtCanMakeCocktail</string>
     <string name="al_gin">Gin</string>
     <string name="al_vodka">Vodka</string>
+    <string name="al_whiskey">Whiskey</string>
+    <string name="al_tequila">Tequila</string>
+    <string name="al_whiteCuracao">White Curacao</string>
+    <string name="al_rum">Rum</string>
+    <string name="al_brandy">Brandy</string>
+    <string name="al_vermouth">Vermouth</string>
+    <string name="al_shochu">焼酎</string>
     <string name="sf_lemonJuice">Lemon juice</string>
     <string name="sf_carbonatedWater">Carbonated water</string>
     <string name="sf_orangeJuice">Orange juice</string>
     <string name="sf_appleJuice">Apple juice</string>
+    <string name="sf_pineAppleJuice">Pineapple juice</string>
+    <string name="sf_limeJuice">Lime juice</string>
+    <string name="sf_grapefruitJuice">Grapefruit juice</string>
+    <string name="sf_coke">Coke</string>
+    <string name="sf_coffee">Coffee</string>
+    <string name="sf_oolongTea">烏龍茶</string>
+    <string name="sf_tonicWater">Tonic water</string>
+    <string name="sf_gingerAle">Ginger ale</string>
 </resources>
