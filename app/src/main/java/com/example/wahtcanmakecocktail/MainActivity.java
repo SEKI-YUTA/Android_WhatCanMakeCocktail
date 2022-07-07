@@ -1,6 +1,8 @@
 package com.example.wahtcanmakecocktail;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -31,13 +34,14 @@ public class MainActivity extends AppCompatActivity {
     private JSONArray drinks;
 
     private Button btn_search;
-    private List<CheckBox> checkBoxList = new ArrayList<>();
+    private RecyclerView recycler_ingredients;
     private List<String> availableIngredients = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // jsonファイルからテキストとしてデータを読み込み
         AssetManager am = getResources().getAssets();
         try {
             InputStream inputStream = am.open("cocktail_data.json");
@@ -52,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        // -------------------------
 
+        // テキストデータをjsonに変換してデータを取得
         try {
             jsonObject = new JSONObject(rawJsonData);
             int version = jsonObject.getInt("version");
@@ -63,18 +69,21 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        // -------------------------
 
-        checkBoxList.add(findViewById(R.id.ck_gin));
-        checkBoxList.add(findViewById(R.id.ck_orange));
-        checkBoxList.add(findViewById(R.id.ck_carbonated));
-        checkBoxList.add(findViewById(R.id.ck_lemon));
+        recycler_ingredients = findViewById(R.id.recycler_ingredients);
+        recycler_ingredients.setHasFixedSize(true);
+        recycler_ingredients.setLayoutManager(new GridLayoutManager(this, 1));
         btn_search = findViewById(R.id.btn_search);
+
+        IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(this, Arrays.asList(getResources().getStringArray(R.array.ingredients)), listener);
+        Log.d("MyLog", Arrays.asList(getResources().getStringArray(R.array.ingredients)).toString());
+        recycler_ingredients.setAdapter(ingredientsAdapter);
 
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 List<String> availableDrinks = new ArrayList<>();
-                checkAvailableIngredients();
 
                 for(int i=0; i < drinks.length(); i++) {
                     try {
@@ -87,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.d("MyLog", "ingredients add");
                         }
                         boolean canMake = availableIngredients.containsAll(ingredientsList);
+                        Log.d("availableIngredients", availableDrinks.toString())   ;
                         if(canMake) {
                             Log.d("CanMake", drink.getString("drinkName"));
                             availableDrinks.add(drink.getString("drinkName"));
@@ -104,37 +114,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void checkAvailableIngredients() {
-//        if(ck_gin.isChecked()) {
-//            availableIngredients.add(getString(R.string.al_gin));
-//        }
-//        if(ck_orange.isChecked()) {
-//            availableIngredients.add(getString(R.string.sf_orangeJuice));
-//        }
-//        if(ck_carbonated.isChecked()) {
-//            availableIngredients.add(getString(R.string.sf_carbonatedWater));
-//        }
-        for(int i = 0; i < checkBoxList.size(); i++) {
-            if(checkBoxList.get(i).isChecked()) {
-                switch(checkBoxList.get(i).getId()) {
-                    case R.id.ck_gin:
-                        availableIngredients.add(getString(R.string.al_gin));
-                        break;
-                    case R.id.ck_orange:
-                        availableIngredients.add(getString(R.string.sf_orangeJuice));
-                        break;
-                    case R.id.ck_carbonated:
-                        availableIngredients.add(getString(R.string.sf_carbonatedWater));
-                        break;
-                    case R.id.ck_lemon:
-                        availableIngredients.add(getString(R.string.sf_lemonJuice));
-                        break;
-                    default:
-                        return;
-                }
+
+    private CompoundButton.OnCheckedChangeListener listener = new CompoundButton.OnCheckedChangeListener() {
+
+        @Override
+        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+            if(b) {
+                availableIngredients.add((String) compoundButton.getText());
+                Toast.makeText(MainActivity.this, compoundButton.getText(), Toast.LENGTH_SHORT).show();
+            } else {
+                availableIngredients.remove(compoundButton.getText());
             }
         }
-    }
+    };
 
 
 }
