@@ -1,34 +1,101 @@
 {
   "version": 1,
-  "modifiend": "2022-7-6",
+  "modified": "2022-7-8",
   "drinks": [
     {
       "drinkName": "Gin Fizz",
+      "base": "Gin",
       "ingredients": ["Gin", "Lemon juice", "Carbonated water"]
     },
     {
       "drinkName": "Gin Tonic",
+      "base": "Gin",
       "ingredients": ["Gin", "Tonic water"]
     },
     {
       "drinkName": "Gin Coke",
+      "base": "Gin",
       "ingredients": ["Gin", "Coke"]
     },
     {
       "drinkName": "Gin Buck",
+      "base": "Gin",
       "ingredients": ["Gin", "Ginger ale", "Lemon juice"]
     },
     {
       "drinkName": "Orange Blossom",
+      "base": "Gin",
       "ingredients": ["Gin", "Orange juice"]
     },
     {
       "drinkName": "Big Apple",
+      "base": "Vodka",
       "ingredients": ["Vodka", "Apple juice"]
     },
     {
       "drinkName": "Screw Driver",
+      "base": "Vodka",
       "ingredients": ["Vodka", "Orange juice"]
+    },
+    {
+      "drinkName": "Bull Dock",
+      "base": "Vodka",
+      "ingredients": ["Vodka", "Grapefruit juice"]
+    },
+    {
+      "drinkName": "Russian Coke",
+      "base": "Vodka",
+      "ingredients": ["Vodka", "Coke"]
+    },
+    {
+      "drinkName": "Moscow Mule",
+      "base": "Vodka",
+      "ingredients": ["Vodka", "Ginger ale", "Lime juice"]
+    },
+    {
+      "drinkName": "Mexicola",
+      "base": "Tequila",
+      "ingredients": ["Tequila", "Coke"]
+    },
+    {
+      "drinkName": "Tequila Buck",
+      "base": "Tequila",
+      "ingredients": ["Tequila", "Ginger ale", "Lemon juice"]
+    },
+    {
+      "drinkName": "Whiskey Coke",
+      "base": "Whiskey",
+      "ingredients": ["Whiskey", "Coke"]
+    },
+    {
+      "drinkName": "Whiskey side car",
+      "base": "Whiskey",
+      "ingredients": ["Whiskey", "White Curacao", "Lemon juice"]
+    },
+    {
+      "drinkName": "White lady",
+      "base": "Gin",
+      "ingredients": ["Gin", "White Curacao", "Lemon juice"]
+    },
+    {
+      "drinkName": "Balalaika",
+      "base": "Vodka",
+      "ingredients": ["Vodka", "White Curacao", "Lemon juice"]
+    },
+    {
+      "drinkName": "XYZ",
+      "base": "Rum",
+      "ingredients": ["Rum", "White Curacao", "Lemon juice"]
+    },
+    {
+      "drinkName": "Side car",
+      "base": "Brandy",
+      "ingredients": ["Brandy", "White Curacao", "Lemon juice"]
+    },
+    {
+      "drinkName": "焼酎サイドカー",
+      "base": "焼酎",
+      "ingredients": ["焼酎", "White Curacao", "Lemon juice"]
     }
   ]
 }

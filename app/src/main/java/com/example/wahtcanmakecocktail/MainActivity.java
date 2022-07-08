@@ -1,8 +1,6 @@
 package com.example.wahtcanmakecocktail;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -11,9 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
-
-import com.example.wahtcanmakecocktail.Adapters.IngredientsAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,9 +21,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private String rawJsonData = "";
@@ -33,8 +34,10 @@ public class MainActivity extends AppCompatActivity {
     private JSONArray drinks;
 
     private Button btn_search;
-    private RecyclerView recycler_ingredients;
+    String[] ingredientArray;
+    private ListView listview_ingredients;
     private List<String> availableIngredients = new ArrayList<>();
+    private List<Map<String, Boolean>> ingredientsList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,14 +73,22 @@ public class MainActivity extends AppCompatActivity {
         }
         // -------------------------
 
-        recycler_ingredients = findViewById(R.id.recycler_ingredients);
-        recycler_ingredients.setHasFixedSize(true);
-        recycler_ingredients.setLayoutManager(new GridLayoutManager(this, 1));
+        listview_ingredients = findViewById(R.id.list_ingredients);
         btn_search = findViewById(R.id.btn_search);
 
-        IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(this, Arrays.asList(getResources().getStringArray(R.array.ingredients)), listener);
-        Log.d("MyLog", Arrays.asList(getResources().getStringArray(R.array.ingredients)).toString());
-        recycler_ingredients.setAdapter(ingredientsAdapter);
+        ingredientArray = getResources().getStringArray(R.array.ingredients);
+        for(int i = 0; i < ingredientArray.length; i++) {
+            Map<String, Boolean> item = new HashMap();
+            item.put(ingredientArray[i], false);
+            ingredientsList.add(item);
+        }
+
+//        IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(this, Arrays.asList(getResources().getStringArray(R.array.ingredients)), listener);
+//        Log.d("MyLog", Arrays.asList(getResources().getStringArray(R.array.ingredients)).toString());
+//        recycler_ingredients.setAdapter(ingredientsAdapter);
+
+        ListAdapter adapter = new MyListViewAdapter(this,ingredientsList, listener);
+        listview_ingredients.setAdapter(adapter);
 
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.d("MyLog", "ingredients add");
                         }
                         boolean canMake = availableIngredients.containsAll(ingredientsList);
-                        Log.d("availableIngredients", availableDrinks.toString())   ;
+                        Log.d("availableDrinks", availableDrinks.toString())   ;
                         if(canMake) {
                             Log.d("CanMake", drink.getString("drinkName"));
                             availableDrinks.add(drink.getString("drinkName"));
@@ -118,10 +129,15 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+            int index = Arrays.asList(ingredientArray)
+                    .indexOf(compoundButton.getText());
+            String key = Arrays.asList(ingredientArray).get(index);
             if(b) {
+                ingredientsList.get(index).put(key, true);
                 availableIngredients.add((String) compoundButton.getText());
                 Toast.makeText(MainActivity.this, compoundButton.getText(), Toast.LENGTH_SHORT).show();
             } else {
+                ingredientsList.get(index).put(key, false);
                 availableIngredients.remove(compoundButton.getText());
             }
         }
