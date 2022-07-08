@@ -1,4 +1,4 @@
-package com.example.wahtcanmakecocktail;
+package com.example.wahtcanmakecocktail.ViewHolders;
 
 import android.view.View;
 import android.widget.TextView;
@@ -6,6 +6,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.wahtcanmakecocktail.R;
 
 public class AvailableDrinkViewHolder extends RecyclerView.ViewHolder {
     public CardView drinkCard;

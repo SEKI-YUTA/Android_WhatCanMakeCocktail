@@ -1,13 +1,15 @@
-package com.example.wahtcanmakecocktail;
+package com.example.wahtcanmakecocktail.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.wahtcanmakecocktail.ViewHolders.IngredientViewHolder;
+import com.example.wahtcanmakecocktail.R;
 
 import java.util.List;
 
