@@ -21,7 +21,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -38,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private ListView listview_ingredients;
     private List<String> availableIngredients = new ArrayList<>();
     private List<Map<String, Boolean>> ingredientsList = new ArrayList<>();
+
+    private GeneralUtil generalUtil;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
         ListAdapter adapter = new MyListViewAdapter(this,ingredientsList, listener);
         listview_ingredients.setAdapter(adapter);
 
+        generalUtil = GeneralUtil.getInstance();
+
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -124,6 +127,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        if(generalUtil.isDoubleTapped()) {
+            super.onBackPressed();
+        } else {
+            Toast.makeText(this, "Please double tap to go home screen", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     private CompoundButton.OnCheckedChangeListener listener = new CompoundButton.OnCheckedChangeListener() {
 

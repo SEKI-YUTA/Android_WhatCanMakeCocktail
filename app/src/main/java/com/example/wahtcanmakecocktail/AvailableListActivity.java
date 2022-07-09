@@ -1,11 +1,14 @@
 package com.example.wahtcanmakecocktail;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.wahtcanmakecocktail.Adapters.AvailableDrinksAdapter;
@@ -19,6 +22,10 @@ public class AvailableListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_available_list);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_back_arrow);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         Intent passedIntent = getIntent();
         Bundle args = passedIntent.getBundleExtra("args");
@@ -36,5 +43,16 @@ public class AvailableListActivity extends AppCompatActivity {
 
         AvailableDrinksAdapter adapter = new AvailableDrinksAdapter(this, availableDrinks);
         recycler_availableDrinks.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
