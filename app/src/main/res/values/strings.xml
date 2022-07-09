@@ -23,4 +23,31 @@
         <item name="sf_tonicWater">Tonic water</item>
         <item name="sf_gingerAle">Ginger ale</item>
     </string-array>
+    <string-array name="softDrink_ingredient">
+        <item name="sf_lemonJuice">Lemon juice</item>
+        <item name="sf_carbonatedWater">Carbonated water</item>
+        <item name="sf_orangeJuice">Orange juice</item>
+        <item name="sf_appleJuice">Apple juice</item>
+        <item name="sf_pineAppleJuice">Pineapple juice</item>
+        <item name="sf_limeJuice">Lime juice</item>
+        <item name="sf_grapefruitJuice">Grapefruit juice</item>
+        <item name="sf_coke">Coke</item>
+        <item name="sf_coffee">Coffee</item>
+        <item name="sf_oolongTea">烏龍茶</item>
+        <item name="sf_tonicWater">Tonic water</item>
+        <item name="sf_gingerAle">Ginger ale</item>
+    </string-array>
+    <string-array name="alcohol_ingredient">
+        <item name="al_gin">Gin</item>
+        <item name="al_vodka">Vodka</item>
+        <item name="al_whiskey">Whiskey</item>
+        <item name="al_tequila">Tequila</item>
+        <item name="al_whiteCuracao">White Curacao</item>
+        <item name="al_rum">Rum</item>
+        <item name="al_brandy">Brandy</item>
+        <item name="al_vermouth">Vermouth</item>
+        <item name="al_shochu">焼酎</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
