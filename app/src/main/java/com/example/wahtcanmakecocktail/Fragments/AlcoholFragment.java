@@ -11,13 +11,10 @@ import android.widget.CompoundButton;
 import android.widget.ListView;
 
 import com.example.wahtcanmakecocktail.MainActivity;
-import com.example.wahtcanmakecocktail.MyListViewAdapter;
+import com.example.wahtcanmakecocktail.Adapters.IngredientListViewAdapter;
 import com.example.wahtcanmakecocktail.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +41,7 @@ public class AlcoholFragment extends Fragment {
 
         listener = ((MainActivity) getActivity()).listener;
 
-        MyListViewAdapter adapter = new MyListViewAdapter(getContext(), alcoholList, listener);
+        IngredientListViewAdapter adapter = new IngredientListViewAdapter(getContext(), alcoholList, listener);
 
         // リスナ経由でチェック済みかを変更しているが個のフラグメントにわたってきているデータが更新されていないor更新されているがリストビューに使われていない
 

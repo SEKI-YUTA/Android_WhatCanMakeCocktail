@@ -13,12 +13,12 @@ import com.example.wahtcanmakecocktail.R;
 
 import java.util.List;
 
-public class IngredientsAdapter extends RecyclerView.Adapter<IngredientViewHolder> {
+public class Unused_IngredientsAdapter extends RecyclerView.Adapter<IngredientViewHolder> {
     private Context context;
     private List<String> ingredients;
     private CompoundButton.OnCheckedChangeListener listener;
 
-    public IngredientsAdapter(Context context, List<String> ingredients, CompoundButton.OnCheckedChangeListener listener) {
+    public Unused_IngredientsAdapter(Context context, List<String> ingredients, CompoundButton.OnCheckedChangeListener listener) {
         this.context = context;
         this.ingredients = ingredients;
         this.listener = listener;

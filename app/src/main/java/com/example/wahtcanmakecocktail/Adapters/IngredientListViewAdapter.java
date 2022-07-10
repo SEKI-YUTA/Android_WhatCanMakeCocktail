@@ -1,4 +1,4 @@
-package com.example.wahtcanmakecocktail;
+package com.example.wahtcanmakecocktail.Adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -10,16 +10,18 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import com.example.wahtcanmakecocktail.R;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class MyListViewAdapter extends BaseAdapter {
+public class IngredientListViewAdapter extends BaseAdapter {
     private Context context;
     private List<Map<String, Boolean>> ingredientsList = new ArrayList<>();
     private CompoundButton.OnCheckedChangeListener listener;
 
-    public MyListViewAdapter(Context context, List<Map<String, Boolean>> ingredientsList, CompoundButton.OnCheckedChangeListener listener) {
+    public IngredientListViewAdapter(Context context, List<Map<String, Boolean>> ingredientsList, CompoundButton.OnCheckedChangeListener listener) {
         this.context = context;
         this.ingredientsList = ingredientsList;
         this.listener = listener;

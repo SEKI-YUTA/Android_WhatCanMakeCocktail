@@ -11,11 +11,10 @@ import android.widget.CompoundButton;
 import android.widget.ListView;
 
 import com.example.wahtcanmakecocktail.MainActivity;
-import com.example.wahtcanmakecocktail.MyListViewAdapter;
+import com.example.wahtcanmakecocktail.Adapters.IngredientListViewAdapter;
 import com.example.wahtcanmakecocktail.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +43,7 @@ public class SoftDrinkFragment extends Fragment {
 
         listener = ((MainActivity) getActivity()).listener;
 
-        MyListViewAdapter adapter = new MyListViewAdapter(getContext(), softDrinkList, listener);
+        IngredientListViewAdapter adapter = new IngredientListViewAdapter(getContext(), softDrinkList, listener);
 
         list_softDrink_ingredients.setAdapter(adapter);
         return view;
