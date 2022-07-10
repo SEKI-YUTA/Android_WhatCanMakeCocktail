@@ -29,11 +29,12 @@ public class SoftDrinkFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         softDrinkArray = getResources().getStringArray(R.array.softDrink_ingredient);
-        for(String softDrink: softDrinkArray) {
-            Map<String, Boolean> item = new HashMap<>();
-            item.put(softDrink, false);
-            softDrinkList.add(item);
-        }
+//        for(String softDrink: softDrinkArray) {
+//            Map<String, Boolean> item = new HashMap<>();
+//            item.put(softDrink, false);
+//            softDrinkList.add(item);
+//        }
+        softDrinkList = MainActivity.getSoftDrinkIngredientsList();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_soft_drink, container, false);
         list_softDrink_ingredients = view.findViewById(R.id.list_softDrink_ingredients);

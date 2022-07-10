@@ -1,9 +1,5 @@
 package com.example.wahtcanmakecocktail;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
@@ -11,12 +7,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.ListAdapter;
-import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -39,23 +37,24 @@ public class MainActivity extends AppCompatActivity {
     private JSONObject jsonObject;
     private JSONArray drinks;
 
-    String[] ingredientArray;
-    private ListView listview_ingredients;
+    String[] alcohol_ingredientArray, softDrink_ingredientArray;
     private List<String> availableIngredients = new ArrayList<>();
-    private List<Map<String, Boolean>> ingredientsList = new ArrayList<>();
+    private static List<Map<String, Boolean>> alcohol_ingredientsList = new ArrayList<>();
+    private static List<Map<String, Boolean>> softDrink_ingredientsList = new ArrayList<>();
 
     private ViewPager2 viewPager;
     private TabLayout tabLayout;
     private HomeViewPagerAdapter viewPagerAdapter;
 
     private GeneralUtil generalUtil;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         viewPager = findViewById(R.id.viewPager);
-        viewPagerAdapter = new HomeViewPagerAdapter(this, listener);
+        viewPagerAdapter = new HomeViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout = findViewById(R.id.tabLayout);
 
@@ -79,10 +78,12 @@ public class MainActivity extends AppCompatActivity {
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                tabLayout.getTabAt(position);
+                Log.d("onPageSelected ", String.valueOf(position));
+//                super.onPageSelected(position);
+                tabLayout.getTabAt(position).select();
             }
         });
+
 
         // jsonファイルからテキストとしてデータを読み込み
         AssetManager am = getResources().getAssets();
@@ -90,11 +91,9 @@ public class MainActivity extends AppCompatActivity {
             InputStream inputStream = am.open("cocktail_data.json");
             BufferedReader bf = new BufferedReader(new InputStreamReader(inputStream));
             String data = "";
-//            rawJsonData = bf.readLine();
-            while((data = bf.readLine()) != null) {
+            while ((data = bf.readLine()) != null) {
                 rawJsonData += data;
             }
-//            Log.d("MyLog", rawJsonData);
             Log.d("readJson", "read json data successful");
         } catch (IOException e) {
             e.printStackTrace();
@@ -108,28 +107,23 @@ public class MainActivity extends AppCompatActivity {
             drinks = jsonObject.getJSONArray("drinks");
             Log.d("drinks", drinks.toString());
 
-//            Log.d("jsonVersion", String.valueOf(version));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        // -------------------------
 
-//        listview_ingredients = findViewById(R.id.list_ingredients);
-
-        ingredientArray = getResources().getStringArray(R.array.ingredients);
-        for(int i = 0; i < ingredientArray.length; i++) {
+        alcohol_ingredientArray = getResources().getStringArray(R.array.alcohol_ingredient);
+        for (int i = 0; i < alcohol_ingredientArray.length; i++) {
             Map<String, Boolean> item = new HashMap();
-            item.put(ingredientArray[i], false);
-            ingredientsList.add(item);
+            item.put(alcohol_ingredientArray[i], false);
+            alcohol_ingredientsList.add(item);
+        }
+        softDrink_ingredientArray = getResources().getStringArray(R.array.softDrink_ingredient);
+        for (int i = 0; i < softDrink_ingredientArray.length; i++) {
+            Map<String, Boolean> item = new HashMap();
+            item.put(softDrink_ingredientArray[i], false);
+            softDrink_ingredientsList.add(item);
         }
 
-//        IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(this, Arrays.asList(getResources().getStringArray(R.array.ingredients)), listener);
-//        Log.d("MyLog", Arrays.asList(getResources().getStringArray(R.array.ingredients)).toString());
-//        recycler_ingredients.setAdapter(ingredientsAdapter);
-
-//        ListAdapter adapter = new MyListViewAdapter(this,ingredientsList, listener);
-//        listview_ingredients.setAdapter(adapter);
-//
         generalUtil = GeneralUtil.getInstance();
 //
     }
@@ -155,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
-        if(generalUtil.isDoubleTapped()) {
+        if (generalUtil.isDoubleTapped()) {
             super.onBackPressed();
         } else {
             Toast.makeText(this, "Please double tap to go home screen", Toast.LENGTH_SHORT).show();
@@ -166,16 +160,38 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-            int index = Arrays.asList(ingredientArray)
-                    .indexOf(compoundButton.getText());
-            String key = Arrays.asList(ingredientArray).get(index);
-            if(b) {
-                ingredientsList.get(index).put(key, true);
-                availableIngredients.add((String) compoundButton.getText());
-                Toast.makeText(MainActivity.this, compoundButton.getText(), Toast.LENGTH_SHORT).show();
+            ViewGroup vg = (ViewGroup) compoundButton.getParent();
+            TextView tv_name = (TextView) vg.getChildAt(0);
+            String name = tv_name.getText().toString();
+
+            boolean isAlcohol = Arrays.asList(alcohol_ingredientArray).contains(name);
+            int index;
+            String key;
+
+            if (isAlcohol) {
+                index = Arrays.asList(alcohol_ingredientArray)
+                        .indexOf(compoundButton.getText());
+                key = Arrays.asList(alcohol_ingredientArray).get(index);
+                if (b) {
+                    alcohol_ingredientsList.get(index).put(key, true);
+                    availableIngredients.add((String) compoundButton.getText());
+                    Toast.makeText(MainActivity.this, compoundButton.getText(), Toast.LENGTH_SHORT).show();
+                } else {
+                    alcohol_ingredientsList.get(index).put(key, false);
+                    availableIngredients.remove(compoundButton.getText());
+                }
             } else {
-                ingredientsList.get(index).put(key, false);
-                availableIngredients.remove(compoundButton.getText());
+                index = Arrays.asList(softDrink_ingredientArray)
+                        .indexOf(compoundButton.getText());
+                key = Arrays.asList(softDrink_ingredientArray).get(index);
+                if (b) {
+                    softDrink_ingredientsList.get(index).put(key, true);
+                    availableIngredients.add((String) compoundButton.getText());
+                    Toast.makeText(MainActivity.this, compoundButton.getText(), Toast.LENGTH_SHORT).show();
+                } else {
+                    softDrink_ingredientsList.get(index).put(key, false);
+                    availableIngredients.remove(compoundButton.getText());
+                }
             }
         }
     };
@@ -183,19 +199,19 @@ public class MainActivity extends AppCompatActivity {
     public void moveToResultActivity() {
         List<String> availableDrinks = new ArrayList<>();
 
-        for(int i=0; i < drinks.length(); i++) {
+        for (int i = 0; i < drinks.length(); i++) {
             try {
                 JSONObject drink = drinks.getJSONObject(i);
                 JSONArray ingredients = drink.getJSONArray("ingredients");
                 Log.d("ingredients", ingredients.toString());
                 List<String> ingredientsList = new ArrayList<>();
-                for(int j = 0; j < ingredients.length(); j ++) {
+                for (int j = 0; j < ingredients.length(); j++) {
                     ingredientsList.add(ingredients.getString(j));
                     Log.d("MyLog", "ingredients add");
                 }
                 boolean canMake = availableIngredients.containsAll(ingredientsList);
-                Log.d("availableDrinks", availableDrinks.toString())   ;
-                if(canMake) {
+                Log.d("availableDrinks", availableDrinks.toString());
+                if (canMake) {
                     Log.d("CanMake", drink.getString("drinkName"));
                     availableDrinks.add(drink.getString("drinkName"));
                 }
@@ -208,6 +224,14 @@ public class MainActivity extends AppCompatActivity {
         args.putStringArrayList("availableDrinks", (ArrayList<String>) availableDrinks);
         intent.putExtra("args", args);
         startActivity(intent);
+    }
+
+    public static List<Map<String, Boolean>> getAlcoholIngredientsList() {
+        return alcohol_ingredientsList;
+    }
+
+    public static List<Map<String, Boolean>> getSoftDrinkIngredientsList() {
+        return softDrink_ingredientsList;
     }
 
 

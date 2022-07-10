@@ -31,21 +31,22 @@ public class AlcoholFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         alcoholArray = getResources().getStringArray(R.array.alcohol_ingredient);
-        for(String alcohol: alcoholArray) {
-            Map<String, Boolean> item = new HashMap<>();
-            item.put(alcohol, false);
-            alcoholList.add(item);
-        }
+//        for(String alcohol: alcoholArray) {
+//            Map<String, Boolean> item = new HashMap<>();
+//            item.put(alcohol, false);
+//            alcoholList.add(item);
+//        }
+        alcoholList = MainActivity.getAlcoholIngredientsList();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_alcohol, container, false);
         list_alcohol_ingredients = view.findViewById(R.id.list_alcohol_ingredients);
 
-//        Bundle passedArgs = getArguments();
-//        listener = (CompoundButton.OnCheckedChangeListener) passedArgs.getSerializable("listener");
 
         listener = ((MainActivity) getActivity()).listener;
 
         MyListViewAdapter adapter = new MyListViewAdapter(getContext(), alcoholList, listener);
+
+        // リスナ経由でチェック済みかを変更しているが個のフラグメントにわたってきているデータが更新されていないor更新されているがリストビューに使われていない
 
         list_alcohol_ingredients.setAdapter(adapter);
         return view;

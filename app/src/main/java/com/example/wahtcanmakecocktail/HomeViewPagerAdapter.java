@@ -15,10 +15,8 @@ import com.example.wahtcanmakecocktail.Fragments.SoftDrinkFragment;
 import java.io.Serializable;
 
 public class HomeViewPagerAdapter extends FragmentStateAdapter {
-    private CompoundButton.OnCheckedChangeListener listener;
-    public HomeViewPagerAdapter(@NonNull FragmentActivity fragment, CompoundButton.OnCheckedChangeListener listener) {
+    public HomeViewPagerAdapter(@NonNull FragmentActivity fragment) {
         super(fragment);
-        this.listener = listener;
     }
 
     @NonNull
@@ -27,22 +25,15 @@ public class HomeViewPagerAdapter extends FragmentStateAdapter {
         AlcoholFragment alFragment = new AlcoholFragment();
         SoftDrinkFragment sfFragment = new SoftDrinkFragment();
 
-        Bundle args = new Bundle();
         switch (position) {
             case 0:
                 Log.d("MyLog", "case 1");
-//                args.putSerializable("listener", (Serializable) listener);
-//                alFragment.setArguments(args);
                 return alFragment;
             case 1:
                 Log.d("MyLog", "case 2");
-//                args.putSerializable("listener", (Serializable) listener);
-//                sfFragment.setArguments(args);
                 return sfFragment;
             default:
                 Log.d("MyLog", "case default");
-//                args.putSerializable("listener", (Serializable) listener);
-//                alFragment.setArguments(args);
                 return alFragment;
         }
     }
