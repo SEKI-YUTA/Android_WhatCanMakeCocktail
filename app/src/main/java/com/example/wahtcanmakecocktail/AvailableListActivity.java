@@ -29,11 +29,7 @@ public class AvailableListActivity extends AppCompatActivity {
 
         Intent passedIntent = getIntent();
         Bundle args = passedIntent.getBundleExtra("args");
-//        availableDrinks = (List<String>) passedIntent.getSerializableExtra("availableDrinks");
-//        Log.d("MyLog", availableDrinks.toString());
-//
-//        Log.d("MyLog", availableDrinks.toString());
-//        Toast.makeText(this, availableDrinks.toString(), Toast.LENGTH_SHORT).show();
+
         availableDrinks = args.getStringArrayList("availableDrinks");
         Toast.makeText(this, availableDrinks.toString(), Toast.LENGTH_SHORT).show();
 

@@ -111,16 +111,21 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        // 酒の名前の配列をstring.xmlから取得
         alcohol_ingredientArray = getResources().getStringArray(R.array.alcohol_ingredient);
         for (int i = 0; i < alcohol_ingredientArray.length; i++) {
             Map<String, Boolean> item = new HashMap();
             item.put(alcohol_ingredientArray[i], false);
+            // 酒の名前と選択状態のMapのListを作成
             alcohol_ingredientsList.add(item);
         }
+
+        // ソフトドリンクの名前の配列をstring.xmlから取得
         softDrink_ingredientArray = getResources().getStringArray(R.array.softDrink_ingredient);
         for (int i = 0; i < softDrink_ingredientArray.length; i++) {
             Map<String, Boolean> item = new HashMap();
             item.put(softDrink_ingredientArray[i], false);
+            // ソフトドリンクの名前と選択状態のMapのListを作成
             softDrink_ingredientsList.add(item);
         }
 
@@ -164,11 +169,13 @@ public class MainActivity extends AppCompatActivity {
             TextView tv_name = (TextView) vg.getChildAt(0);
             String name = tv_name.getText().toString();
 
+            // アルコールかどうかをboolean型に保存
             boolean isAlcohol = Arrays.asList(alcohol_ingredientArray).contains(name);
             int index;
             String key;
 
             if (isAlcohol) {
+                // アルコール飲料である場合の処理
                 index = Arrays.asList(alcohol_ingredientArray)
                         .indexOf(compoundButton.getText());
                 key = Arrays.asList(alcohol_ingredientArray).get(index);
@@ -181,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
                     availableIngredients.remove(compoundButton.getText());
                 }
             } else {
+                // ソフトドリンクである場合の処理
                 index = Arrays.asList(softDrink_ingredientArray)
                         .indexOf(compoundButton.getText());
                 key = Arrays.asList(softDrink_ingredientArray).get(index);
@@ -198,7 +206,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void moveToResultActivity() {
         List<String> availableDrinks = new ArrayList<>();
-
         for (int i = 0; i < drinks.length(); i++) {
             try {
                 JSONObject drink = drinks.getJSONObject(i);
@@ -209,8 +216,9 @@ public class MainActivity extends AppCompatActivity {
                     ingredientsList.add(ingredients.getString(j));
                     Log.d("MyLog", "ingredients add");
                 }
+
+                // 選択された材料でカクテルを作れるかを判定
                 boolean canMake = availableIngredients.containsAll(ingredientsList);
-                Log.d("availableDrinks", availableDrinks.toString());
                 if (canMake) {
                     Log.d("CanMake", drink.getString("drinkName"));
                     availableDrinks.add(drink.getString("drinkName"));
