@@ -3,6 +3,7 @@ package com.example.wahtcanmakecocktail;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,15 +33,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+// カクテルの詳細画面の追加
+// ベースの酒から検索機能
+
 public class MainActivity extends AppCompatActivity {
     private String rawJsonData = "";
     private JSONObject jsonObject;
-    private JSONArray drinks;
+    private static JSONArray drinks;
 
     String[] alcohol_ingredientArray, softDrink_ingredientArray;
     private List<String> availableIngredients = new ArrayList<>();
     private static List<Map<String, Boolean>> alcohol_ingredientsList = new ArrayList<>();
     private static List<Map<String, Boolean>> softDrink_ingredientsList = new ArrayList<>();
+    private static List<JSONObject> availableDrinks = new ArrayList<>();
 
     private ViewPager2 viewPager;
     private TabLayout tabLayout;
@@ -153,7 +159,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-//        super.onBackPressed();
         if (generalUtil.isDoubleTapped()) {
             super.onBackPressed();
         } else {
@@ -205,7 +210,6 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public void moveToResultActivity() {
-        List<String> availableDrinks = new ArrayList<>();
         for (int i = 0; i < drinks.length(); i++) {
             try {
                 JSONObject drink = drinks.getJSONObject(i);
@@ -221,16 +225,13 @@ public class MainActivity extends AppCompatActivity {
                 boolean canMake = availableIngredients.containsAll(ingredientsList);
                 if (canMake) {
                     Log.d("CanMake", drink.getString("drinkName"));
-                    availableDrinks.add(drink.getString("drinkName"));
+                    availableDrinks.add(drink);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
         Intent intent = new Intent(MainActivity.this, AvailableListActivity.class);
-        Bundle args = new Bundle();
-        args.putStringArrayList("availableDrinks", (ArrayList<String>) availableDrinks);
-        intent.putExtra("args", args);
         startActivity(intent);
     }
 
@@ -243,4 +244,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public static List<JSONObject> getAvailableDrinks() {
+        return availableDrinks;
+    }
+
+    public static JSONArray getDrinks() {
+        return drinks;
+    }
 }

@@ -13,10 +13,13 @@ import android.widget.Toast;
 
 import com.example.wahtcanmakecocktail.Adapters.AvailableDrinksAdapter;
 
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class AvailableListActivity extends AppCompatActivity {
-    List<String> availableDrinks;
+    List<JSONObject> availableDrinks = new ArrayList<>();
     private RecyclerView recycler_availableDrinks;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +33,11 @@ public class AvailableListActivity extends AppCompatActivity {
         Intent passedIntent = getIntent();
         Bundle args = passedIntent.getBundleExtra("args");
 
-        availableDrinks = args.getStringArrayList("availableDrinks");
-        Toast.makeText(this, availableDrinks.toString(), Toast.LENGTH_SHORT).show();
+        availableDrinks.addAll(MainActivity.getAvailableDrinks());
 
+//        availableDrinks = args.getStringArrayList("availableDrinks");
+//        Toast.makeText(this, availableDrinks.toString(), Toast.LENGTH_SHORT).show();
+//
         recycler_availableDrinks = findViewById(R.id.recycler_availableDrinks);
         recycler_availableDrinks.setHasFixedSize(true);
         recycler_availableDrinks.setLayoutManager(new GridLayoutManager(this, 1));

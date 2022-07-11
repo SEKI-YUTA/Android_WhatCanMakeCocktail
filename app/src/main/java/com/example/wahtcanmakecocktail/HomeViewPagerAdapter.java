@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.wahtcanmakecocktail.Fragments.AlcoholFragment;
+import com.example.wahtcanmakecocktail.Fragments.SearchFromBase;
 import com.example.wahtcanmakecocktail.Fragments.SoftDrinkFragment;
 
 import java.io.Serializable;
@@ -24,14 +25,18 @@ public class HomeViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         AlcoholFragment alFragment = new AlcoholFragment();
         SoftDrinkFragment sfFragment = new SoftDrinkFragment();
+        SearchFromBase searchFromBase = new SearchFromBase();
 
         switch (position) {
             case 0:
                 Log.d("MyLog", "case 1");
                 return alFragment;
             case 1:
-                Log.d("MyLog", "case 2");
+                Log.d("MyLog", "case 1");
                 return sfFragment;
+            case 2:
+                Log.d("MyLog", "case 2");
+                return searchFromBase;
             default:
                 Log.d("MyLog", "case default");
                 return alFragment;
@@ -40,6 +45,6 @@ public class HomeViewPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 3;
     }
 }

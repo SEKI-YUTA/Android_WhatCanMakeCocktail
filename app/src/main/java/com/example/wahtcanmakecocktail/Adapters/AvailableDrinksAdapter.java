@@ -21,13 +21,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.wahtcanmakecocktail.ViewHolders.AvailableDrinkViewHolder;
 import com.example.wahtcanmakecocktail.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 public class AvailableDrinksAdapter extends RecyclerView.Adapter<AvailableDrinkViewHolder> {
     private Context context;
-    private List<String> availableDrinks;
+    private List<JSONObject> availableDrinks;
 
-    public AvailableDrinksAdapter(Context context, List<String> availableDrinks) {
+    public AvailableDrinksAdapter(Context context, List<JSONObject> availableDrinks) {
         this.context = context;
         this.availableDrinks = availableDrinks;
     }
@@ -40,14 +43,22 @@ public class AvailableDrinksAdapter extends RecyclerView.Adapter<AvailableDrinkV
 
     @Override
     public void onBindViewHolder(@NonNull AvailableDrinkViewHolder holder, int position) {
+        String drinkName = "";
+        try {
+            drinkName = availableDrinks.get(holder.getAdapterPosition()).getString("drinkName");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String finalDrinkName = drinkName;
         holder.drinkCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 //                Toast.makeText(context, "jump to browser", Toast.LENGTH_SHORT).show();
-                showDialog(availableDrinks.get(holder.getAdapterPosition()));
+                showDialog(finalDrinkName);
             }
         });
-        holder.tv_drinkName.setText(availableDrinks.get(holder.getAdapterPosition()));
+        holder.tv_drinkName.setText(drinkName);
     }
 
     @Override
@@ -66,9 +77,11 @@ public class AvailableDrinksAdapter extends RecyclerView.Adapter<AvailableDrinkV
         row_openInBrowser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drinkName.replace(" ", "+");
-                drinkName.replace("　", "+");
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=" + drinkName));
+                String dName = drinkName;
+                dName.replace(" ", "+");
+                dName.replace("　", "+");
+                dName += " cocktail";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=" +dName));
                 context.startActivity(intent);
                 dialog.dismiss();
             }
