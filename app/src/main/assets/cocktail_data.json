@@ -28,6 +28,36 @@
       "ingredients": ["Gin", "Orange juice"]
     },
     {
+      "drinkName": "Ninha Turtle",
+      "base": "Gin",
+      "ingredients": ["Gin", "Blue Curacao", "Orange juice"]
+    },
+    {
+      "drinkName": "Grapevine",
+      "base": "Gin",
+      "ingredients": [
+        "Gin",
+        "Grapefruit juice",
+        "Lemon juice",
+        "Grenadine syrup"
+      ]
+    },
+    {
+      "drinkName": "Gin Rickey",
+      "base": "Gin",
+      "ingredients": ["Gin", "Lime juice", "Carbonated water"]
+    },
+    {
+      "drinkName": "Martini",
+      "base": "Gin",
+      "ingredients": ["Gin", "Vermouth"]
+    },
+    {
+      "drinkName": "White lady",
+      "base": "Gin",
+      "ingredients": ["Gin", "White Curacao", "Lemon juice"]
+    },
+    {
       "drinkName": "Big Apple",
       "base": "Vodka",
       "ingredients": ["Vodka", "Apple juice"]
@@ -53,6 +83,21 @@
       "ingredients": ["Vodka", "Ginger ale", "Lime juice"]
     },
     {
+      "drinkName": "Balalaika",
+      "base": "Vodka",
+      "ingredients": ["Vodka", "White Curacao", "Lemon juice"]
+    },
+    {
+      "drinkName": "Bloody Mary",
+      "base": "Vodka",
+      "ingredients": ["Vodka", "Tomato juice"]
+    },
+    {
+      "drinkName": "Kamikaze",
+      "base": "Vodka",
+      "ingredients": ["Vodka", "White Curacao", "Lime juice"]
+    },
+    {
       "drinkName": "Mexicola",
       "base": "Tequila",
       "ingredients": ["Tequila", "Coke"]
@@ -71,16 +116,6 @@
       "drinkName": "Whiskey side car",
       "base": "Whiskey",
       "ingredients": ["Whiskey", "White Curacao", "Lemon juice"]
-    },
-    {
-      "drinkName": "White lady",
-      "base": "Gin",
-      "ingredients": ["Gin", "White Curacao", "Lemon juice"]
-    },
-    {
-      "drinkName": "Balalaika",
-      "base": "Vodka",
-      "ingredients": ["Vodka", "White Curacao", "Lemon juice"]
     },
     {
       "drinkName": "XYZ",

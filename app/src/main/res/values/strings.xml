@@ -36,13 +36,17 @@
         <item name="sf_oolongTea">烏龍茶</item>
         <item name="sf_tonicWater">Tonic water</item>
         <item name="sf_gingerAle">Ginger ale</item>
+        <item name="sf_grenadine">Grenadine syrup</item>
+        <item name="sf_tomato">Tomato juice</item>
     </string-array>
     <string-array name="alcohol_ingredient">
+        <item name="al_beer">Beer</item>
         <item name="al_gin">Gin</item>
         <item name="al_vodka">Vodka</item>
         <item name="al_whiskey">Whiskey</item>
         <item name="al_tequila">Tequila</item>
         <item name="al_whiteCuracao">White Curacao</item>
+        <item name="al_whiteCuracao">Blue Curacao</item>
         <item name="al_rum">Rum</item>
         <item name="al_brandy">Brandy</item>
         <item name="al_vermouth">Vermouth</item>
