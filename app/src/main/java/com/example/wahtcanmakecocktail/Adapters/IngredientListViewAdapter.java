@@ -40,14 +40,12 @@ public class IngredientListViewAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        Log.d("getItemId", String.format("no.%s", i));
         return 0;
     }
 
 
     @Override
     public View getView(int position, View convertView, ViewGroup container) {
-        Log.d("getView", String.format("no.%s", position));
 //        if(convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.ingredient_item, container, false);

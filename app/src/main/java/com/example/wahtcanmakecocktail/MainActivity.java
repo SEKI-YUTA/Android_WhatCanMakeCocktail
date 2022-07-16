@@ -210,6 +210,8 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public void moveToResultActivity() {
+        availableDrinks.clear();
+        Log.d("MyLog", availableIngredients.toString());
         for (int i = 0; i < drinks.length(); i++) {
             try {
                 JSONObject drink = drinks.getJSONObject(i);

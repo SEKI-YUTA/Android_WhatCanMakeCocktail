@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import com.example.wahtcanmakecocktail.Adapters.AvailableDrinksAdapter;
@@ -30,8 +31,9 @@ import java.util.List;
 public class SearchFromBase extends Fragment {
     JSONArray drinks;
     List<JSONObject> availableDrinks = new ArrayList<>();
-    Spinner baseSpinner;
-    RecyclerView recycler_availableDrinks;
+    private Spinner baseSpinner;
+    private RecyclerView recycler_availableDrinks;
+    private RelativeLayout notFoundText;
 
     ArrayAdapter<CharSequence> spinnerAdapter;
 
@@ -44,6 +46,7 @@ public class SearchFromBase extends Fragment {
 
         baseSpinner = view.findViewById(R.id.baseSpinner);
         recycler_availableDrinks = view.findViewById(R.id.recycler_availableDrinks);
+        notFoundText = view.findViewById(R.id.notFoundText);
 
         spinnerAdapter = ArrayAdapter.createFromResource(getContext(), R.array.alcohol_ingredient, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -72,6 +75,11 @@ public class SearchFromBase extends Fragment {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                }
+                if(availableDrinks.size() <= 0) {
+                    notFoundText.setVisibility(View.VISIBLE);
+                } else {
+                    notFoundText.setVisibility(View.GONE);
                 }
                 AvailableDrinksAdapter adapter = new AvailableDrinksAdapter(getContext(), availableDrinks);
                 recycler_availableDrinks.setAdapter(adapter);
