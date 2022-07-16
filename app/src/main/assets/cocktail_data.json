@@ -28,7 +28,7 @@
       "ingredients": ["Gin", "Orange juice"]
     },
     {
-      "drinkName": "Ninha Turtle",
+      "drinkName": "Ninja Turtle",
       "base": "Gin",
       "ingredients": ["Gin", "Blue Curacao", "Orange juice"]
     },
@@ -50,12 +50,57 @@
     {
       "drinkName": "Martini",
       "base": "Gin",
-      "ingredients": ["Gin", "Vermouth"]
+      "ingredients": ["Gin", "Dry Vermouth"]
+    },
+    {
+      "drinkName": "Gibson",
+      "base": "Gin",
+      "ingredients": ["Gin", "Dry Vermouth"]
+    },
+    {
+      "drinkName": "Rosa",
+      "base": "Gin",
+      "ingredients": ["Gin", " Dry Vermouth", "Cherry brandy"]
+    },
+    {
+      "drinkName": "Blue Moon",
+      "base": "Gin",
+      "ingredients": ["Gin", "Parfait Amour", "Lemon juice"]
+    },
+    {
+      "drinkName": "Orchid",
+      "base": "Gin",
+      "ingredients": ["Gin", "Parfait Amour", "Egg White"]
+    },
+    {
+      "drinkName": "Alice Queen",
+      "base": "Gin",
+      "ingredients": ["Gin", "Parfait Amour", "Egg White", "Lemon juice"]
+    },
+    {
+      "drinkName": "Sky and Sea",
+      "base": "Gin",
+      "ingredients": ["Gin", "Blue Curacao", "Pineapple juice"]
     },
     {
       "drinkName": "White lady",
       "base": "Gin",
       "ingredients": ["Gin", "White Curacao", "Lemon juice"]
+    },
+    {
+      "drinkName": "Blue lady",
+      "base": "Gin",
+      "ingredients": ["Gin", "Blue Curacao", "Lemon juice", "Egg White"]
+    },
+    {
+      "drinkName": "Gimlet",
+      "base": "Gin",
+      "ingredients": ["Gin", "Lime juice"]
+    },
+    {
+      "drinkName": "Gin and Lime",
+      "base": "Gin",
+      "ingredients": ["Gin", "Lime juice"]
     },
     {
       "drinkName": "Big Apple",
